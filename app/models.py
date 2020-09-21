@@ -17,8 +17,9 @@ class Pitch(db.Model):
   upvote = db.Column(db.Integer)
   downvote = db.Column(db.Integer)
   user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+  category = db.Column(db.String(100))
   comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
-  category = db.relationship('Category',backref = 'pitch',lazy="dynamic")
+  
   
 class Comment(db.Model):
   __tablename__ = 'comments'
@@ -26,9 +27,4 @@ class Comment(db.Model):
   comment = db.Column(db.String(255))
   pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
   
-class Category(db.Model):
-  __tablename__ = 'categories'
-  id = db.Column(db.Integer,primary_key = True)
-  category = db.Column(db.String(255))
-  pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
   

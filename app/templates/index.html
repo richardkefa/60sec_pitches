@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+<!-- {% import 'macros.html' as macro %} -->
+{% block content %}
+<!-- <div>
+  {{macro.displaypitches(pitch)}}
+</div>
+<h1>Hello world</h1> -->
+{% for pitch in pitches %}
+<div class="col-md-12">
+  <!-- Card -->
+  <div class="card">
+  
+    <!-- Card content -->
+    <div class="card-body">
+    
+      <!-- Title -->
+      <h4 class="card-title">{{pitch.title}}</h4>
+      <!-- Text -->
+      <p class="card-text">{{pitch.pitch}}</p>
+      <!-- Button -->
+      <a href="/comment/{{pitch.id}}">comments</a>
+    
+    </div>
+  
+  </div><br>
+<!-- Card -->
+</div>
+{% endfor %}
+{% endblock%}

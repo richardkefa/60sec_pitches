@@ -23,7 +23,12 @@
 </head>
 <body>
   <div class="container">
-    
+    {% block navbar %}
+    {% include 'navbar.html' %}
+    {% endblock %}
+    {% block content %}
+
+    {% endblock %}
   </div>
 </body>
 </html>

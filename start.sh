@@ -1,3 +1,3 @@
-export SECRET_KEY='3u4235u02jr02'
+export SECRET_KEY = 'FOI894UT834U'
 
 python3.6 manage.py server
