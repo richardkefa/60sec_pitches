@@ -44,3 +44,15 @@ def new_comment(post_id):
     return redirect(url_for('.comment',pitch_id = post_id))
   return render_template('comments/comments.html', form = form,comment = comment,all_comments = all_comments)
 
+@main.route('/profile/<username>')
+def update_profile(username):
+  user = User.query.filter_by(username = username).first()
+  form = Profileform()
+  
+  if form.validate_on_submit():
+    user.bio = form.bio.data
+    
+    db.session.add(user)
+    db.session.commit()   
+    return redirect(url_for('.profile'), username = username)
+  return render_template('profile/profileform.html',form = form) 
