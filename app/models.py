@@ -50,5 +50,8 @@ class Comment(db.Model):
   pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
   user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
   
+  def save_comment(self):
+      db.session.add(self)
+      db.session.commit() 
   
   

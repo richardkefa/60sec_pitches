@@ -39,10 +39,16 @@ def new_pitch():
 def new_comment(post_id):
   form = Commentform()
   post = Post.query.get(post_id)
-  all_comments = Comment.query.filter_by(post_id = pitch_id).all()
+  all_comments = Comment.query.filter_by(pitch_id = post_id).all()
   
   if form.validate_on_submit():
     comment = form.title.data
     pitch_id = post_id
     user_id = current_user._get_current_object().id
+    new_comment =Comment(comment = comment,user_id = user_id,pitch_id = post_id)
+    new_comment.save_comment()
+    flash('Added post successfuly')
+    return redirect(url_for('.comment',pitch_id = post_id))
+  return render_template('comments/comments.html', form = form,comment = comment,all_comments = all_comments)
+    
     
