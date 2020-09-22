@@ -56,3 +56,13 @@ def update_profile(username):
     db.session.commit()   
     return redirect(url_for('.profile'), username = username)
   return render_template('profile/profileform.html',form = form) 
+
+@main.route('/<username>/profile')
+def profile(username):
+    user = User.query.filter_by(username = uusername).first()
+    user_id = current_user._get_current_object().id
+    all_posts = Pitch.query.filter_by(user_id = user_id).all()
+    if user is None:
+        abort(404)
+    return render_template("profile/profile.html", user = user,all_posts =all_posts)
+    
