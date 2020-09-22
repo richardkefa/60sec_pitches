@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,TextAreaField,SubmitField,SelectField
+from wtforms import StringField,TextAreaField,SubmitField,SelectField,
 from wtforms.validators import Required
 
 class Pitchform(FlaskForm):
@@ -12,3 +12,7 @@ class Pitchform(FlaskForm):
 class Commentform(FlaskForm):
     comment = TextAreaField('Comment',validators=[Required()])
     submit = SubmitField('Post')
+    
+class Profileform(FlaskForm):
+    bio = TextAreaField)("Describe yourself", validators=[Required()])
+    submit = SubmitField('Submit')

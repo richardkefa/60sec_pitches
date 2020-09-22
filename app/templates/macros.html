@@ -55,11 +55,9 @@
           <div class="card-body">
 
             <!-- Title -->
-            <h4 class="card-title">{{pitch.title}}</h4>
+            <h4 class="card-title">{{comment.pitch.title}}</h4>
             <!-- Text -->
-            <p class="card-text">{{pitch.pitch}}</p>
-            <!-- Button -->
-            <a href="/comment/{{pitch.id}}">Comments</a>
+            <p class="card-text">{{comment.comment}}</p>
 
           </div>
 
@@ -71,6 +69,28 @@
     </div>
     {% endif %}
     {% endmacro %}
+
+    {% macro all_post_display(all_posts) %}
+    {% if all_posts %}
+    <div class="row">
+        <div class="card-columns">
+        
+        {% for each_post in all_posts %}
+        <hr/>
+        <div class="card">
+            <div class="card-title">
+                <p><strong>Title: </strong>{{each_post.post_title}}</p> 
+            </div>
+            <div class="card-body">
+                <p>{{each_post.post_content}}</p>
+                <p><strong>Category:</strong> {{each_post.category}}</p>
+                <p><strong>Author:</strong> {{each_post.author}}</p>
+            </div> 
+            
+        </div>
+        {% endfor %}
+     </div>
+    </div>
   </div>
 </body>
 

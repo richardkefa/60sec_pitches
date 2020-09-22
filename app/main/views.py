@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import User,Pitch,Comment
-from .forms import Pitchform,Commentform
+from .forms import Pitchform,Commentform,Profileform
 from .. import db
 import markdown2
 from flask_login import login_required
@@ -12,14 +12,8 @@ def pitch():
   pitch=Pitch.query.all()
   if pitch is None:
       abort(404)
-  # format_pitch = markdown2.markdown(pitch,extras=["code-friendly", "fenced-code-blocks"])
   return render_template('index.html',pitch = pitch,title = title)
-
-@main.route('/comment/<int:id>')
-def get_comment(id):
-  comment = comment.query.filter_by()
   
-
 @main.route('/pitch/new',methods = ['GET','POST'])
 @login_required
 def new_pitch():
@@ -35,7 +29,7 @@ def new_pitch():
   return render_template('new_pitch_form.html',new_pitch = form)
 
 @main.route('/comment/<int:post_id>',methods =['GET','POST'])
-@login_required
+# @login_required
 def new_comment(post_id):
   form = Commentform()
   post = Post.query.get(post_id)
@@ -47,8 +41,6 @@ def new_comment(post_id):
     user_id = current_user._get_current_object().id
     new_comment =Comment(comment = comment,user_id = user_id,pitch_id = post_id)
     new_comment.save_comment()
-    flash('Added post successfuly')
     return redirect(url_for('.comment',pitch_id = post_id))
   return render_template('comments/comments.html', form = form,comment = comment,all_comments = all_comments)
-    
-    
+
