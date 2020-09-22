@@ -1,24 +1,45 @@
-{% macro displaypitches(pitches) %}
-<h1>hello</h1>
-  {% for pitch in pitches %}
-  <div class="col-md-12">
-    <!-- Card -->
-    <div class="card">
-    
-      <!-- Card content -->
-      <div class="card-body">
-      
-        <!-- Title -->
-        <h4 class="card-title">{{pitch.title}}</h4>
-        <!-- Text -->
-        <p class="card-text">{{pitch.pitch}}</p>
-        <!-- Button -->
-        <a href="/comment/{{pitch.id}}">comments</a>
-      
+{% macro displaypitches(pitch) %}
+{% for pitch in pitch %}
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Card -->
+          <div class="card">
+          
+            <!-- Card content -->
+            <div class="card-body">
+            
+              <!-- Title -->
+              <h4 class="card-title">{{pitch.title|safe}}</h4>
+              <!-- Text -->
+              <p class="card-text">{{pitch.pitch|safe}}</p>
+              <!-- Button -->
+              <a href="/comment/{{pitch.id}}">Comments</a>
+            
+            </div>
+          
+          </div><br>
+      <!-- Card -->
+        </div>
       </div>
-    
-    </div><br>
-<!-- Card -->
-  </div>
+    </div>
+  </body>
+  </html>
   {% endfor %}
 {% endmacro %}
