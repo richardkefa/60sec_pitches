@@ -9,8 +9,12 @@
     </div>
     <div class="col-md-7">
       <h2>Comments</h2>
-      {% macro displaypitches(all_comments) %}
+      <!-- {% macro displaypitches(all_comments) %} -->
+      {% for comment in all_comments %}
+      {{comment.comment}}
+      {% endfor %}
     </div>
   </div>
 </div>
+{% endmacro %}
 {% endblock%}

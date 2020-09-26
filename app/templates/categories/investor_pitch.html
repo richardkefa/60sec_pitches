@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{%block content %}
+<div class="container">
+  {% for pitch in investor_pitch %}
+      <div class="col-md-12">
+        <!-- Card -->
+        <div class="card">
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title">{{pitch.pitch_title}}</h4>
+            <!-- Text -->
+            <p class="card-text">{{pitch.pitch}}</p>
+            <!-- Button -->
+            <a href="/comment/{{pitch.id}}">Comments</a>
+
+          </div>
+
+        </div><br>
+        <!-- Card -->
+      </div>
+    {% endfor %}
+</div>
+  {% endblock %} 

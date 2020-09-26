@@ -17,31 +17,7 @@
 
 <body>
   <div class="container">
-    {% macro displaypitches(pitch) %}
-    {% for pitch in pitch %}
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Card -->
-        <div class="card">
-
-          <!-- Card content -->
-          <div class="card-body">
-
-            <!-- Title -->
-            <h4 class="card-title">{{pitch.title}}</h4>
-            <!-- Text -->
-            <p class="card-text">{{pitch.pitch}}</p>
-            <!-- Button -->
-            <a href="/comment/{{pitch.id}}">Comments</a>
-
-          </div>
-
-        </div><br>
-        <!-- Card -->
-      </div>
-    </div>
-    {% endfor %}
-    {% endmacro %}
+    
 
     {% macro displaypitches(all_comments) %}
     {% if all_comments %}
@@ -55,7 +31,7 @@
           <div class="card-body">
 
             <!-- Title -->
-            <h4 class="card-title">{{comment.pitch.title}}</h4>
+            <h4 class="card-title">{{comment.pitch.pitch_title}}</h4>
             <!-- Text -->
             <p class="card-text">{{comment.comment}}</p>
 
@@ -70,27 +46,53 @@
     {% endif %}
     {% endmacro %}
 
-    {% macro all_post_display(all_posts) %}
-    {% if all_posts %}
+    {% macro all_post_display(profile_posts,user) %}
     <div class="row">
-        <div class="card-columns">
-        
-        {% for each_post in all_posts %}
-        <hr/>
+      <div class="col-md-3">
+        <!-- Card -->
+        <div class="card testimonial-card">
+
+          <!-- Background color -->
+          <div class="card-up yellow lighten-1"></div>
+
+          <!-- Avatar -->
+          <div class="avatar mx-auto white">
+            <img src="{{url_for('static',filename=user.profile_pic_path)}}" class="rounded-circle" alt="woman avatar">
+          </div>
+
+          <!-- Content -->
+          <div class="card-body">
+            <!-- Name -->
+            <h4 class="card-title">{{user}}</h4>
+            <hr>
+            <p><i class="fas fa-quote-left"></i>{{bio}}</p>
+          </div>
+          <div class="card-footer text-right">
+            <a href="{{url_for('main.update_profile',username=user.username)}}"> Edit</a>
+          </div>
+
+        </div>
+        <!-- Card -->
+      </div>
+      <div class="col-md-9">
+        {% if profile_posts %}
+        {% for each_post in profile_posts %}
+        <hr />
         <div class="card">
-            <div class="card-title">
-                <p><strong>Title: </strong>{{each_post.post_title}}</p> 
-            </div>
-            <div class="card-body">
-                <p>{{each_post.post_content}}</p>
-                <p><strong>Category:</strong> {{each_post.category}}</p>
-                <p><strong>Author:</strong> {{each_post.author}}</p>
-            </div> 
-            
+          <div class="card-title">
+            <p><strong>Title: </strong>{{each_post.post_title}}</p>
+          </div>
+          <div class="card-body">
+            <p>{{each_post.post_content}}</p>
+            <p><strong>Category:</strong> {{each_post.category}}</p>
+            <p><strong>Author:</strong> {{each_post.author}}</p>
+          </div>
         </div>
         {% endfor %}
-     </div>
+      </div>
     </div>
+    {% endif %}
+    {% endmacro %}
   </div>
 </body>
 
