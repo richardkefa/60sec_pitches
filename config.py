@@ -3,7 +3,7 @@ class Config:
   '''
   general configuration class
   '''
-  # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitches'
+  # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitching'
   SECRET_KEY = os.environ.get('SECRET_KEY')
   UPLOADED_PHOTOS_DEST ='app/static/photos'
   
@@ -15,19 +15,20 @@ class Config:
   MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 
 class ProdConfig(Config):
-  SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
   '''
   production configuration child class
   '''
-  # pass
+  SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URI")
+  DEBUG = False
+  
+
 class TestConfig(Config):
-  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitch_test'
-  # DEBUG = True
+  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitching_test'
+  DEBUG = True
 
 class DevConfig(Config):
-  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitching'
+  SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
   DEBUG = True
-  TEMPLATES_AUTO_RELOAD=True
   
 config_options = {
   'development':DevConfig,

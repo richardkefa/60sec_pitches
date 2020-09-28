@@ -7,6 +7,7 @@ from . import auth
 from ..email import mail_message
 
 
+
 @auth.route('/login',methods=['GET','POST'])
 def login():
   form = LoginForm()
