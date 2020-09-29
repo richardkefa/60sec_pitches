@@ -19,7 +19,7 @@ class ProdConfig(Config):
   production configuration child class
   '''
   SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-  # DEBUG = False
+  DEBUG = True
   
 
 class TestConfig(Config):
