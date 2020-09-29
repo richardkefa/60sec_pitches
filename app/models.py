@@ -15,7 +15,7 @@ class User(db.Model,UserMixin):
   bio = db.Column(db.String(255))
   photo_path = db.Column(db.String(255))
   pitch_id = db.relationship('Pitch',backref = 'user',lazy="dynamic")
-  comments = db.relationship('Comment',backref = 'use',lazy="dynamic")
+  comments = db.relationship('Comment',backref = 'user',lazy="dynamic")
   pass_secure  = db.Column(db.String(255))
                            
   @property
@@ -38,7 +38,7 @@ class Pitch(db.Model):
   downvote = db.Column(db.Integer)
   user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
   category = db.Column(db.String(100))
-  comments = db.relationship('Comment',backref = 'user',lazy="dynamic")
+  comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
   
   def save_pitch(self):
       db.session.add(self)

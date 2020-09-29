@@ -18,16 +18,16 @@ class ProdConfig(Config):
   '''
   production configuration child class
   '''
-  SQLALCHEMY_DATABASE_URL = os.environ.get("DATABASE_URI")
-  DEBUG = False
+  SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+  # DEBUG = False
   
 
 class TestConfig(Config):
-  SQLALCHEMY_DATABASE_URL = 'postgresql+psycopg2://moringa:Access@localhost/pitching_test'
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringa:Access@localhost/pitchit_test'
   DEBUG = True
 
 class DevConfig(Config):
-  SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URI')
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringa:Access@localhost/pitchit'
   DEBUG = True
   
 config_options = {
